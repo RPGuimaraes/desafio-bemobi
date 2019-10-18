@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Short Your Url</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a35eded88a.js" crossorigin="anonymous"></script>
+
+    <style>
+
+        :root {
+            --height-result: 424px;
+        }
+
+        .bg-blue {
+            background: #01579b;
+            color: white;
+        }
+
+        .bg-light-blue {
+            background: #4f83cc;
+            color: white;
+        }
+
+        .status {
+            float: right;
+            margin-top: 3vh;
+        }
+
+        .tiny-url {
+            cursor: pointer;
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.2s ease-out;
+        }
+
+        .apear {
+            max-height: var(--height-result);
+            animation-name: apear;
+        }
+
+        .tiny-shadow{
+                box-shadow: 5px 5px 4px #ccc;
+        }
+
+        @keyframes apear {
+            0% {
+                height: 0px;
+            }
+            100% {
+                height: var(--height-result);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container ">
+    <div class="d-flex justify-content-center ">
+
+
+        <form id="short-form" class="rounded tiny-shadow border border-primary p-5 mt-3 bg-blue">
+            <h1>Short Your Url</h1>
+            <div class="row">
+                <div class="col-6">
+                    <div class="font-weight-bold">Type your URL</div>
+                    <div><input type="text" name="original" class="form-control"></div>
+
+                </div>
+
+                <div class="col-6">
+                    <div class="font-italic">Custom (optional)</div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">https://tiny-me.io/</span>
+                        </div>
+                        <input type="text" name="alias" class="form-control" id="basic-url"
+                               aria-describedby="basic-addon3">
+                    </div>
+                    <button type="button" value="Short!" onclick="short()" class="btn btn-secondary"
+                            style="float:right">Short!
+                    </button>
+                </div>
+            </div>
+            <div class="tiny-url" data-toggle="tooltip" data-placement="top"
+                 title="Click to Copy!" onclick="copy_function()">
+                <div class="col-12">
+                    <div class="font-italic"><i class="fas fa-copy"></i>
+                        <span id="alias">oi.com.br</span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="font-italic ">
+                        Original: <span id="url">oi.com.br</span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="font-italic ">
+                        Time Operation: <span id="statistic">oi.com.br</span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="status">
+
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
+<div id="toast" class="toast mt-3" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 0; right: 50px;min-width: 200px">
+  <div class="toast-header">
+
+    <strong class="mr-auto">Short URL</strong>
+
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body bg-blue" >
+    Copied!
+  </div>
+</div>
+<script>
+    function copy_function() {
+
+        const el = document.createElement('textarea');
+        el.value = $("#alias").html();
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        $('#toast').toast('show')
+
+
+    }
+
+    function short() {
+        var original = $("[name=original]")[0].value;
+        var alias = $("[name=alias]")[0].value;
+        var url = `create?url=${original}&alias=${alias}`;
+
+
+        $.ajax(
+            {
+                url: url,
+                type: "POST",
+                success: function (result) {
+                    $("#alias").html(result.alias);
+                    $("#url").html(result.url);
+                    $("#statistic").html(result.statistic.time_taken);
+                    $(".tiny-url").addClass("apear rounded border p-3 mt-3 bg-light-blue ");
+                    $(".status").html("Success!");
+
+                },
+                error: function (request, status, error) {
+
+                    $(".status").html(request.responseJSON.error);
+                    $(".tiny-url").removeClass("apear rounded border p-3 mt-3 bg-light-blue ");
+
+                }
+            }
+        );
+
+
+    }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+</script>
+</body>
+</html>

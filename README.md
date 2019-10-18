@@ -2,11 +2,8 @@
 # desafio-bemobi  
 #### Desafio Encurtador de URL - Raphael Guimarães  
   
-A aplicação foi criada em Django, utilizando Mongodb e Docker.  
-  
-**Install**  
-````  
-sudo apt install docker.io  
+A aplicação foi criada em Django, utilizando Mongodb e Docker 18.x.    
+ 
 ````  
 **Run**  
 ````  
@@ -39,7 +36,7 @@ Essa url é utilizada para encurtar url's.
   "alias": "http://localhost:8000/customalias",
   "url": "http://original_url",
   "statistic": {
-    "time_taken": "000.0s0ms"
+    "time_taken": "000.000ms"
   }
 }    
 ````  

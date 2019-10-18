@@ -2,7 +2,7 @@
 # desafio-bemobi  
 #### Desafio Encurtador de URL - Raphael Guimarães  
   
-A aplicação foi criada em Django, utilizando Mongodb e Docker 18.x. 
+A aplicação foi criada em Django, utilizando Mongodb, Docker 18.x e Docker-Compose 
  
 **Run**  
 ```  

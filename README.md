@@ -23,7 +23,7 @@ Após executar o projeto localmente, o client para consumir a API pode ser acess
 ##API
 A API possui três endpoint's:
 
->POST: http://localhost:8000/create
+>POST: http://localhost:8000/create?url="original_url"&alias="custom_alias"
 
 Essa url é utilizada para encurtar url's.
 
@@ -64,6 +64,6 @@ Essa url é utilizada para exibir as 10 url's mais acessadas.
 
 Essa url é utilizada para redirecionar para uma url que foi previamente encurtada
 
-**PathParam**
+**Slug**
 
 1. alias: é qualquer alias válido préviamente criado por esta api. 

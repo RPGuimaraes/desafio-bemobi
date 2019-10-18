@@ -3,7 +3,6 @@ services:
   app:
     container_name: tiny
     build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate --no-input && python manage.py runserver"
     network_mode: host
     volumes:
       - ./tiny:/app/tiny

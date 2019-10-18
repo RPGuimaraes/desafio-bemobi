@@ -35,14 +35,13 @@ Essa url é utilizada para encurtar url's.
   
 **Response: 200 OK**  
 ````  
-{  
-	 "alias": "http://localhost:8000/customalias", 
-	 "url": "http://original_url", 
-	 "statistic": 
-		{ 
-			 "time_taken": "000.000ms" 
-		}
-}  
+{
+  "alias": "http://localhost:8000/customalias",
+  "url": "http://original_url",
+  "statistic": {
+    "time_taken": "000.0s0ms"
+  }
+}    
 ````  
 >GET: http://localhost:8000/show-ranking  
   
@@ -50,16 +49,14 @@ Essa url é utilizada para exibir as 10 url's mais acessadas.
   
 **Response: 200 OK**  
 ````  
-{  
- "ranking":
-         [     
-            {  
-			 "alias": "custom_alias",
-			 "url": "http://original.url.com.br",
-			 "clicks": ###  
-			 },
-			 ...
-		]  
+{
+  "ranking": [
+    {
+      "alias": "custom_alias",
+      "url": "http://original.url.com.br",
+      "clicks": 0
+    }
+  ]
 }  
 ````  
   

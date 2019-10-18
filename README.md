@@ -2,20 +2,16 @@
 # desafio-bemobi  
 #### Desafio Encurtador de URL - Raphael Guimarães  
   
-A aplicação foi criada em Django, utilizando Mongodb e Docker.  
-  
-**Install**  
-````  
-sudo apt install docker.io  
-````  
+A aplicação foi criada em Django, utilizando Mongodb, Docker 18.x e Docker-Compose 
+ 
 **Run**  
-````  
+```  
 docker-compose up --build  
-````  
+```  
 **Stop**  
-````  
+```  
 docker-compose down  
-````  
+```  
   
 ## Client  
 Após executar o projeto localmente, o client que consome a API pode ser acessado em:  
@@ -34,21 +30,21 @@ Essa url é utilizada para encurtar url's.
 2. alias: é opcional e deve conter apenas letras   
   
 **Response: 200 OK**  
-````  
+```  
 {
   "alias": "http://localhost:8000/customalias",
   "url": "http://original_url",
   "statistic": {
-    "time_taken": "000.0s0ms"
+    "time_taken": "000.000ms"
   }
 }    
-````  
+```  
 >GET: http://localhost:8000/show-ranking  
   
 Essa url é utilizada para exibir as 10 url's mais acessadas.  
   
 **Response: 200 OK**  
-````  
+```  
 {
   "ranking": [
     {
@@ -58,7 +54,7 @@ Essa url é utilizada para exibir as 10 url's mais acessadas.
     }
   ]
 }  
-````  
+```  
   
 >GET: http://localhost:8000/{alias}  
   
